@@ -2,7 +2,7 @@ import Logoauth from './Logoauth';
 import {useForm} from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-function Login() {
+function Login(props) {
   
   const {register, handleSubmit, formState: {errors}} = useForm();
   const onSubmit = (data) => {
