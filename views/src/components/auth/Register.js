@@ -1,13 +1,14 @@
 import Logoauth from './Logoauth';
 import {useForm} from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
+import axios from '../../axios';
 
 
 function Register() {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const onSubmit = (data) => {
-        alert(JSON.stringify(data))
+        axios.apiRegister(data);
     }
 
   return (
@@ -18,28 +19,28 @@ function Register() {
             <div className="col-10">
                 <div className="form-floating text-muted">
                     <input type="text" {...register('first_name', { required: 'First Name is required', pattern: {value:/^[A-Za-z]+$/i, message: 'Is not name'}, minLength:{value:3, message: 'First Name is weak'} })} className="form-control" id="floatingInput" placeholder="First Name"></input>
-                    <label for="floatingInput">First Name</label>
+                    <label htmlFor="floatingInput">First Name</label>
                     <div className='mt-1 text-danger'><ErrorMessage errors={errors} name="first_name"/></div>
                 </div>
                 <div className="form-floating text-muted">
                     <input type="text" {...register('last_name', { required: 'Last Name is required',pattern: {value:/^[A-Za-z]+$/i, message: 'Is not name'}, minLength:{value:3, message: 'Last Name is weak'} })} className="form-control" id="floatingInput" placeholder="Last Name"></input>
-                    <label for="floatingInput">Last Name</label>
+                    <label htmlFor="floatingInput">Last Name</label>
                     <div className='mt-1 text-danger'><ErrorMessage errors={errors} name="last_name"/></div>
                 </div>
             </div>
             <div className="form-floating text-muted col-10">
                 <input type="text" {...register('email', { required: 'Email is required', pattern:{value:/^\w.+@[a-zA-Z]+?\.[a-zA-Z]{2,3}$/, message: 'Email incorrect'} })} className="form-control" id="floatingInput" placeholder="Email"></input>
-                <label for="floatingInput">Email address</label>
+                <label htmlFor="floatingInput">Email address</label>
                 <div className='mt-1 text-danger'><ErrorMessage errors={errors} name="email"/></div>
             </div>
             <div className="form-floating text-muted col-10">
                 <input type="password" {...register('password', { required: 'Password is required', minLength:{value:3, message: 'Password is weak'} })} className="form-control" id="floatingPassword" placeholder="Password"></input>
-                <label for="floatingPassword">Password</label>
+                <label htmlFor="floatingPassword">Password</label>
                 <div className='mt-1 text-danger'><ErrorMessage errors={errors} name="password"/></div>
             </div>
             <div className="form-floating text-muted col-10">
                 <input type="password" {...register('confirm_password', { required: 'Confirmation password is required', minLength:{value:3, message: 'Password is weak'} })} className="form-control" id="floatingPassword" placeholder="Confirm Password"></input>
-                <label for="floatingPassword">Confirm Password</label>
+                <label htmlFor="floatingPassword">Confirm Password</label>
                 <div className='mt-1 text-danger'><ErrorMessage errors={errors} name="confirm_password"/></div>
             </div>
             <div className="col-10 d-flex justify-content-between align-items-center mt-3">

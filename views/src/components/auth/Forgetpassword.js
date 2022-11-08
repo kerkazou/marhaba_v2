@@ -1,11 +1,12 @@
 import Logoauth from './Logoauth';
 import {useForm} from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
+import axios from '../../axios'
 
 function Forgetpassword() {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const onSubmit = (data) => {
-        alert(JSON.stringify(data))
+        axios.apiForgetPassword(data)
     }
 
   return (
@@ -15,7 +16,7 @@ function Forgetpassword() {
             <div class="text-muted h5">Forget password ?</div>
             <div class="form-floating text-muted col-10">
                 <input type="text" {...register('email', { required: 'Email is required', pattern:{value:/^\w.+@[a-zA-Z]+?\.[a-zA-Z]{2,3}$/, message: 'Email incorrect'} })} class="form-control" id="floatingInput" placeholder="Email"></input>
-                <label for="floatingInput">Email address</label>
+                <label htmlFor="floatingInput">Email address</label>
                 <div className='mt-1 text-danger'><ErrorMessage errors={errors} name="email"/></div>
             </div>
             <div class="col-10 d-flex justify-content-between align-items-center mt-3">
